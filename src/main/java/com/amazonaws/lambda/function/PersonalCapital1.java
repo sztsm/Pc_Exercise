@@ -48,11 +48,15 @@ public class PersonalCapital1 implements RequestHandler<LambdaProxyInput, Lambda
         		PlanSearchResponse response = esClient.invokeSearch(request);
         		
         		long to = fromIndex + ApplicationConstants.RESULTS_PER_PAGE;
-        		
         		response.setCurrentpageNo(pageNo);
-        		// index is zero based in elastic search. so add 1 before returning it to client
-        		response.setResultFromIndex(fromIndex+1);
-        		response.setResultToIndex(to > response.getTotalRecords() ? response.getTotalRecords() : to);
+        		if (response.getResult() == null || response.getResult().size() == 0) {
+            		response.setResultFromIndex(0);
+            		response.setResultToIndex(0);
+        		} else {
+            		// index is zero based in elastic search. so add 1 before returning it to client
+            		response.setResultFromIndex(fromIndex+1);
+            		response.setResultToIndex(to > response.getTotalRecords() ? response.getTotalRecords() : to);
+        		}
             	 
             output.setStatusCode(200);
    		 	output.setBody(mapper.writeValueAsString(response));
@@ -129,6 +133,11 @@ public class PersonalCapital1 implements RequestHandler<LambdaProxyInput, Lambda
          			&& !ApplicationConstants.STR_BLANK.equals(lambdaInput.getQueryStringParameters().get(EsPropertiesEnum.PAGE.value()).trim())) {
      		long pageNo = Long.parseLong(lambdaInput.getQueryStringParameters().get(
      						EsPropertiesEnum.PAGE.value()));
+     		
+     		// max pagination limit set on ES domain
+     		if (pageNo > ApplicationConstants.MAX_RESULTSET_PAGINATION) {
+     			 throw new PlansValidationException(ApplicationConstants.HTTP_CODE_400, ApplicationConstants.MAX_PAGINATION_LIMIT);
+     		}
      		 searchRequest.setPageNo(pageNo<1? 1 :pageNo);
 	    	 } else {
      	 	searchRequest.setPageNo(1);

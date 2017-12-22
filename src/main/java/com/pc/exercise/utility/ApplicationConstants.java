@@ -40,4 +40,8 @@ public interface ApplicationConstants {
 	String ES_FUZZINESS_STR = "fuzziness";
 	
 	String ES_AUTO_STR = "auto";
+	
+	int MAX_RESULTSET_PAGINATION = 1000;
+	
+	String MAX_PAGINATION_LIMIT = "The Result window is too large. Please use more specific search parameters";
 }

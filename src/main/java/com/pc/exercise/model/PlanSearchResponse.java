@@ -8,6 +8,8 @@ public class PlanSearchResponse {
 	// Total records matching the search
 	private long totalRecords;
 	
+	private boolean hasResult;
+	
 	// search result
 	private List<Item> result;
 	
@@ -61,10 +63,18 @@ public class PlanSearchResponse {
 		this.resultToIndex = resultToIndex;
 	}
 	
-	 @Override
+	 public boolean isHasResult() {
+		return hasResult;
+	}
+
+	public void setHasResult(boolean hasResult) {
+		this.hasResult = hasResult;
+	}
+
+	@Override
 	    public String toString() {
-	    		return "Input : { totalRecords: "+ totalRecords + ", currentpageNo :" + currentpageNo + ", resultFromIndex:" +resultFromIndex +
-	    				", resultToIndex: " + resultToIndex + ", result: " + result;
+	    		return "Response : { totalRecords: "+ totalRecords + ", currentpageNo :" + currentpageNo + ", resultFromIndex:" +resultFromIndex +
+	    				", resultToIndex: " + resultToIndex + ", result: " + result + ", hasResult: " + hasResult + " }";
 	    }
 	
 }
