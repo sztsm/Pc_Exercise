@@ -2,8 +2,8 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.amazonaws.lambda</groupId>
-  <artifactId>demo</artifactId>
+  <groupId>com.pc.excercise</groupId>
+  <artifactId>lambda</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
@@ -41,7 +41,7 @@
       <dependency>
         <groupId>com.amazonaws</groupId>
         <artifactId>aws-java-sdk-bom</artifactId>
-        <version>1.11.250</version>
+        <version>1.11.254</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -66,15 +66,11 @@
       <artifactId>aws-lambda-java-core</artifactId>
       <version>1.1.0</version>
     </dependency>
-<dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-core</artifactId>
-    <version>2.10.0</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-core</artifactId>
-    <version>2.9.1</version>
+    
+    <dependency>
+    <groupId>com.opencsv</groupId>
+    <artifactId>opencsv</artifactId>
+    <version>4.1</version>
 </dependency>
   </dependencies>
 </project>

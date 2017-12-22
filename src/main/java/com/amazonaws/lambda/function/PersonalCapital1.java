@@ -14,6 +14,7 @@ import com.pc.exercise.model.LambdaProxyInput;
 import com.pc.exercise.model.LambdaProxyOutput;
 import com.pc.exercise.utility.ApplicationConstants;
 import com.pc.exercise.utility.EsPropertiesEnum;
+
 /**
  * This class acts as Lambda proxy class. 
  * 
@@ -54,6 +55,7 @@ public class PersonalCapital1 implements RequestHandler<LambdaProxyInput, Lambda
             		response.setResultToIndex(0);
         		} else {
             		// index is zero based in elastic search. so add 1 before returning it to client
+        			response.setHasResult(true);
             		response.setResultFromIndex(fromIndex+1);
             		response.setResultToIndex(to > response.getTotalRecords() ? response.getTotalRecords() : to);
         		}
