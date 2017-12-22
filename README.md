@@ -5,7 +5,6 @@ Using Java, write a micro service that invokes AWS elastic search and make it av
 2. Search should be allowed by Plan name, Sponsor name and Sponsor State   
 3. Use AWS best practices   
 
-
 Solution:
 1. data converted to json with opencsv. Data is loaded via elastic search bulk api.
 2. AWS Amazon Gateway is connected to Lambda, which inturn queries the AWS Elastic search using Java client. 
